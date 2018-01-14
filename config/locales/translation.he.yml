@@ -111,7 +111,7 @@ he:
       not_found: לא נמצא.
       not_locked: לא היה נעול.
       not_saved:
-        one: שגיאה אחת מנעה את ה%{resource} ביצוע שמירה
+        one: 'שגיאה אחת מנעה את ה%{resource} ביצוע שמירה:'
         other: "%{count} שגיאות מנעו מ%{resource} ביצוע שמירה"
       taken_in_past: שימש כבר בעבר
       equal_to_current_password: חייב להיות שונה מהסיסמה הנוכחית.
@@ -138,10 +138,12 @@ he:
   activerecord:
     errors:
       messages:
-        record_invalid: 'האימות נכשל: %{errors}'
+        record_invalid: 'האימות נכשל בשל שדה: %{errors}'
         restrict_dependent_destroy:
           one: לא ניתן למחוק את הרשומה בשל הקישור ל %{record} הקיים
           many: לא ניתן למחוק את הרשומה בשל הקישורים ל %{record} הקיימים
+          has_one: לא ניתן למחוק את הרשומה בשל הקישורים ל %{record} הקיימים
+          has_many: לא ניתן למחוק את הרשומה בשל הקישורים ל %{record} הקיימים
       models:
         user:
           attributes:
@@ -163,11 +165,11 @@ he:
         legislation/process:
           attributes:
             end_date:
-              invalid_date_range: חובה להיות בתאריך ההתחלה או אחריו
+              invalid_date_range: חובה להיות החל מתאריך ההתחלה או אחריו
             debate_end_date:
-              invalid_date_range: חובה להיות בתאריך התחלת הדיון או אחריו
+              invalid_date_range: חובה להיות החל מתאריך התחלת הדיון או אחריו
             allegations_end_date:
-              invalid_date_range: חובה להיות בתאריך התחלת הדיון בטענות או אחריו
+              invalid_date_range: חובה להיות החל מתאריך התחלת הדיון בטענות או אחריו
         proposal:
           attributes:
             tag_list:
@@ -195,6 +197,16 @@ he:
             image:
               image_width: רוחב חייב להיות %{required_width}px
               image_height: גובה חייב להיות %{required_height}px
+        image:
+          attributes:
+            attachment:
+              min_image_width: רוחב חייב להיות לפחות %{required_min_width}px
+              min_image_height: גובה חייב להיות לפחות %{required_min_height}px
+        map_location:
+          attributes:
+            map:
+              invalid: Map location can't be blank. Place a marker or select the checkbox
+                if geolocalization is not needed
     models:
       activity:
         one: פעילות
@@ -271,6 +283,24 @@ he:
       budget/investment/milestone:
         one: ציון דרך
         other: ציוני דרך
+      valuator:
+        one: מעריך/ה
+        other: מעריכים/ות
+      manager:
+        one: מנהל/ת
+        other: מנהלים/ות
+      documents:
+        one: מסמך
+        other: מסמכים
+      images:
+        one: תמונה
+        other: תמונות
+      topic:
+        one: נושא
+        other: נושאים
+      poll:
+        one: הצבעה סופית
+        other: הצבעות סופיות
     attributes:
       budget:
         name: שם
@@ -291,6 +321,8 @@ he:
         location: מיקום
         administrator_id: מנהל/ת מערכת
         organization_name: אם ההצעה היא בשם קבוצה או ארגון כתבו את שמם
+        image: תמונת תיאור ההצעה
+        image_title: תמונת נושא
       comment:
         body: תגובה
         user: משתמש/ת
@@ -331,6 +363,8 @@ he:
         starts_at: תאריך התחלה
         ends_at: תאריך סיום
         geozone_restricted: מוגבל לאיזור גאוגרפי
+        summary: סיכום
+        description: תיאור
       poll/question:
         title: שאלה
         valid_answers: תשובות אפשריות
@@ -387,6 +421,23 @@ he:
       budget/investment/milestone:
         title: כותרת
         description: תיאור
+        publication_date: תאריך פרסום
+      document:
+        title: כותרת
+        attachment: קישור לנספח
+      image:
+        title: כותרת
+        attachment: קישור לנספח
+      poll/question/answer:
+        title: תשובה
+        description: תיאור
+      poll/question/answer/video:
+        title: כותרת
+        url: קישור לסרטון וידאו חיצוני
+      budget/heading:
+        name: 
+        price: 
+        population: 
   datetime:
     distance_in_words:
       half_a_minute: חצי דקה
@@ -466,6 +517,9 @@ he:
         spending_proposal: הצעתך לתקצוב נוצרה בהצלחה. ניתן לגשת אליה ב %{activity}
         budget_investment: תקצוב להשקעה כספית נוצר בהצלחה
         signature_sheet: גיליון חתימות נוצר בהצלחה
+        poll_question_answer: תשובה נוספה בהצלחה
+        poll_question_answer_video: סרטון וידאו נוסף בהצלחה
+        topic: הנושא נוצר בהצלחה
       update:
         notice: "%{resource_name} עודכן בהצלחה"
         debate: הדיון עודכן בהצלחה
@@ -474,12 +528,15 @@ he:
         proposal: ההצעה עודכנה בהצלחה
         spending_proposal: הצעתך לתקצוב עודכנה בהצלחה
         budget_investment: מיזם להשקעות עודכן בהצלחה
+        topic: הנושא עודכן בהצלחה
       destroy:
         notice: "%{resource_name} נמחק בהצלחה."
         alert: "%{resource_name} אינו ניתן למחיקה."
         spending_proposal: הצעתך לתקצוב נמחקה בהצלחה
         budget_investment: מיזם להשקעות נמחק בהצלחה
         error: אינו ניתן למחיקה
+        topic: הנושא נמחק בהצלחה
+        poll_question_answer_video: סרטון התשובה נמחק בהצלחה
       save_changes:
         notice: השינויים נשמרו
   i18n_tasks:
@@ -659,7 +716,7 @@ he:
       code_required: הזן/י בבקשה את הקוד שסיפק לך צוות התמיכה שלנו
     password_expired:
       updated: הסיסמה עודכנה בהצלחה
-      change_required: זמן הסיסמה לא בתוקף
+      change_required: הסיסמה שלך אינה בתוקף
       expire_password: זמן הסיסמה פג
       change_password: שנה/י את הסיסמה שלך
       new_password: סיסמה חדשה
@@ -767,8 +824,8 @@ he:
       errors:
         form:
           error:
-            one: מונע מביצוע השמירה של המודעה הגרפית
-            other: מונעות מביצוע השמירה של המודעה הגרפית
+            one: ישנה שגיאה המונעת ביצוע השמירה של המודעה הגרפית
+            other: ישנן שגיאות המונעת ביצוע השמירה של המודעה הגרפית
       new:
         creating: יצירת מודעה גרפית חדשה
     activity:
@@ -789,6 +846,7 @@ he:
           on_users: משתמשים/ות
         title: פעילות המנחה
         type: סוג
+        no_activity: אין פעילות של המנחים/ות
     budgets:
       index:
         title: תקצובים שיתופיים
@@ -804,12 +862,14 @@ he:
         table_edit_budget: עריכה
         edit_groups: עריכת כותרות הקבוצה
         edit_budget: עריכת תקצוב שיתופי
+        filter: סינון
       create:
         notice: תקצוב שיתופי חדש, נוצר בהצלחה
       update:
         notice: תקצוב שיתופי עודכן בהצלחה
       edit:
         title: עריכת תקצוב שיתופי
+        delete: 
       new:
         title: תקצוב שיתופי חדש
       show:
@@ -831,9 +891,17 @@ he:
         table_amount: כמות
         population: Population
         table_population: Population
+        population_info: "Budget Heading population field is used for Statistic purposes
+          at the end of the Budget to show for each Heading that represents an area
+          with population what percentage voted. The field is optional so you can
+          leave it empty if it doesn't apply.\n "
+        population_help_text: 
       winners:
         calculate: Calculate Winner Investments
         calculated: Winners being calculated, it may take a minute.
+      destroy:
+        success_notice: 
+        unable_notice: 
     budget_investments:
       index:
         heading_filter_all: כל הכותרות
@@ -871,6 +939,8 @@ he:
         table_selection: בחירה
         table_winner: זוכה
         table_incompatible: Incompatible
+        download_current_selection: 
+        no_budget_investments: 
       show:
         assigned_admin: מנהל/ת שהוקצה למיזם
         assigned_valuators: מעריכים/ות שהוקצו
@@ -900,6 +970,7 @@ he:
           title: Winner
           'true': 'Yes'
           'false': 'No'
+        user_tags: User tags
       edit:
         classification: סיווג
         assigned_valuators: מעריכים/ות
@@ -912,6 +983,7 @@ he:
         mark_as_incompatible: Mark as incompatible
         selection: Selection
         mark_as_selected: Mark as selected
+        user_tags: User assigned tags
       search_unfeasible: חיפוש מיזמים שאינם ברי יישום
     comments:
       index:
@@ -923,10 +995,12 @@ he:
         hidden_debate: דיון ציבורי מוסתר
         hidden_proposal: הצעה מוסתרת
         title: תגובות מוסתרות
+        no_hidden_comments: אין תגובות מוסתרות
     dashboard:
       index:
-        back: בחזרה אל
+        back: חזרה אל %{org}
         title: מנהלה
+        description: ברוך/ה הבא/ה %{org} ללוח מנהל.
     debates:
       index:
         filter: מסנן
@@ -935,6 +1009,7 @@ he:
           with_confirmed_hide: מאומת
           without_confirmed_hide: ממתין לאישור
         title: דיונים ציבוריים מוסתרים
+        no_hidden_debates: אין דיונים ציבוריים מוסתרים
     hidden_users:
       index:
         filter: מסנן
@@ -943,6 +1018,8 @@ he:
           with_confirmed_hide: מאומת
           without_confirmed_hide: ממתין לאישור
         title: משתמשים/ות מוסתרים/ות
+        user: משתמש/ת
+        no_hidden_users: אין משתמשים/ות מוסתרים/ות
       show:
         email: 'דואר אלקטרוני:'
         hidden_at: 'מוסתר ב:'
@@ -976,6 +1053,7 @@ he:
           summary_placeholder: סיכום קצר של התיאור
           description_placeholder: הוספת תיאור של התהליך
           additional_info_placeholder: הוספת מידע מועיל נוסף
+          proposals_phase: שלב ההצעות
         index:
           create: התהליך הבא
           delete: מחק
@@ -1001,6 +1079,7 @@ he:
           info: מידע
           draft_texts: מלל
           questions: דיון ציבורי
+          proposals: הצעות
       draft_versions:
         create:
           notice: נוצרה טיוטה בהצלחה. <a href="%{link}"> לצפייה ללחוץ כאן </a>
@@ -1086,9 +1165,25 @@ he:
           comments_count: ספירת תגובות
         question_option_fields:
           remove_option: הסרת אפשרות
+      proposals:
+        index:
+          title: הצעות
+          back: חזרה
+        form:
+          header_information: |2-
+
+            כותרת מידע
+          header_information_description: אספקת מידע נוסף על ההצעות. טקסט זה יוצג
+            כהתראה במודול הצעות בתוך התהליך. השתמש/י בסימון למטה בכדי לעצב את המלל
+          header_information_placeholder: הוספת מלל לכותרת המידע של ההצעה
+          custom_categories: תגיות נושא
+          custom_categories_description: תגיות שמשתמש/ת יכול/ה לבחור להצעה
     managers:
       index:
         title: מנהלים/ות
+        name: שם
+        email: דואר אלקטרוני
+        no_managers: אין מנהלים/ות
       manager:
         add: הוספה
         delete: מחיקה
@@ -1096,6 +1191,7 @@ he:
         email_placeholder: חיפוש משתמש/ת לפי כתובת דואר אלקטרוני
         search: חיפוש
         user_not_found: משתמש/ת לא נמצא/ה
+        title: 'מנהלי/ות המערכת: חיפוש משתמש'
     menu:
       activity: פעילות המנחה
       admin: תפריט מנהל/ת מערכת
@@ -1115,7 +1211,7 @@ he:
       valuators: מעריכים/ות
       poll_officers: מפקחי הצבעות סופיות
       polls: הצבעות סופיות
-      poll_booths: Booths location
+      poll_booths: מיקום תאים
       officials: משתמשים/ות בתפקידים רשמיים
       organizations: ארגונים
       settings: הגדרות תצורה
@@ -1135,9 +1231,14 @@ he:
       title_site_customization: התאמה אישית של המערכת
       legislation: דיון מקצועי
       users: משתמשים/ות
+      poll_booth_assignments: הקצאות תאים
+      poll_shifts: ניהול משמרות
     administrators:
       index:
         title: מנהלי/ות המערכת
+        name: שם
+        email: דואר אלקטרוני
+        no_administrators: אין מנהלי/ות מערכת
       administrator:
         add: הוספה
         delete: מחיקה
@@ -1146,9 +1247,13 @@ he:
         email_placeholder: חיפוש משתמש/ת לפי כתובת דואר אלקטרוני
         search: חיפוש
         user_not_found: משתמש/ת לא נמצא/ה
+        title: 'מנהלי/ות המערכת: חיפוש משתמש'
     moderators:
       index:
         title: מנחים/ות
+        name: שם
+        email: דואר אלקטרוני
+        no_moderators: אין מנהלים/ות
       moderator:
         add: הוספה
         delete: מחיקה
@@ -1156,6 +1261,7 @@ he:
         email_placeholder: חיפוש משתמש/ת לפי כתובת דואר אלקטרוני
         search: חיפוש
         user_not_found: משתמש/ת לא נמצא/ה
+        title: 'מנהלי/ות: חיפוש משתמש'
     newsletters:
       index:
         title: מכתבי חדשות
@@ -1163,14 +1269,21 @@ he:
     valuators:
       index:
         title: מעריכים/ות
+        name: שם
+        email: דואר אלקטרוני
+        description: תיאור
+        no_description: אין תיאור
+        no_valuators: אין מעריכים/ות
       valuator:
         description_placeholder: תיאור (לא חובה למלא)
         user_found: משתמש/ת נמצא/ה
         add: נוסף מעריכים/ות
+        delete: מחיקה
       search:
         email_placeholder: חיפוש משתמש/ת לפי כתובת דואר אלקטרוני
         search: חיפוש
         user_not_found: משתמש/ת לא נמצא/ה
+        title: 'מעריכים/ות: חיפשו משתמש/ת'
       summary:
         title: סיכום מעריכים/ות למיזמים להשקעה
         valuator_name: מעריך/ה
@@ -1239,6 +1352,8 @@ he:
         count_by_officer: Daily recount (by officer)
         count_final: Final recount (by officer)
         count_by_system: Votes (automatic)
+        results: תוצאות
+        total_system: סך כל ההצבעות (ספירה אוטומטית)
       index:
         booths_title: List of booths
         no_booths: There are no booths assigned to this poll.
@@ -1247,6 +1362,9 @@ he:
         table_assignment: Assignment
         remove_booth: Remove booth from poll
         add_booth: Assign booth
+      alert:
+        shifts: There are shifts associated to this booth. If you remove the booth
+          assignment, the shifts will be also deleted. Continue?
     polls:
       index:
         title: רשימת הצבעות סופיות
@@ -1254,9 +1372,16 @@ he:
         create: יצירת הצבעה סופית
         name: שם
         dates: תאריכים
+        geozone_restricted: מוגבל לאזורים
       new:
         title: יצירת הצבעה סופית חדשה
         submit_button: יצירת הצבעה סופית
+        show_results_and_stats: הצגת תוצאות ונתונים סטטיסטיים
+        show_results: הצגת תוצאות
+        show_stats: הצגת נתונים סטטיסטיים
+        results_and_stats_reminder: |2-
+
+          סימון בתיבות הללו של תוצאות ו/או נתונים סטטיסטיים של הצבעה,  יאפשר זמינות לתצוגה לציבור וכל משתמש/ת יראה אותם.
       edit:
         title: עריכת הצבעה סופית
         submit_button: עידכון הצבעה סופית
@@ -1286,7 +1411,7 @@ he:
         filter_poll: סנן לפי הצבעה סופית
         select_poll: בחר/י הצבעה סופית
         questions_tab: שאלות
-        successful_proposals_tab: הצעות מוצלחות
+        successful_proposals_tab: הצעות שהגיעו לאחוז התמיכה הנדרש
         create_question: חדשה
         table_proposal: הצעה
         table_question: שאלה
@@ -1303,6 +1428,25 @@ he:
         valid_answers: תשובות תקפות
         description: תיאור
         preview: הצג לצפייה באתר
+        question: שאלות
+        edit_question: עריכת השאלה
+        add_answer: הוספת תשובה
+        video_url: קישור לסרטון וידאו חיצוני
+        answers:
+          title: תשובה
+          description: תיאור
+          videos: סרטונים
+          video_list: רשימת סרטונים
+          images: תמונות
+          images_list: רשימת תמונות
+          documents: מסמכים
+          documents_list: רשימת מסמכים
+          document_title: כותרת
+          document_actions: פעולות
+      answers:
+        images:
+          add_image: הוספת תמונה
+          save_image: שמירת תמונה
     recounts:
       index:
         title: ספירה חוזרת
@@ -1311,6 +1455,7 @@ he:
         table_recounts: סיכום סופי של ספירה מצטברת יומית (על ידי משתמש/ת בתפקיד רשמי)
         table_final_recount: סיכום סופי (של משתמש/ת בתפקיד רשמי)
         table_system_count: הצבעות (ספירה אוטומטית)
+        table_total_recount: סיכום סופי (של משתמש/ת בתפקיד רשמי)
     results:
       index:
         title: תוצאות
@@ -1319,6 +1464,17 @@ he:
         table_nulls: פתקי קולות פסולים
         table_answer: תשובה
         table_votes: הצבעות
+      result:
+        table_whites: סך פתקי קולות ריקים
+        table_nulls: פתקי קולות פסולים
+        table_total: סך פתקי קולות
+        table_answer: תשובה
+        table_votes: הצבעות
+      results_by_booth:
+        booth: booth
+        results: תוצאות
+        see_results: צפייה בתוצאות
+        title: תוצאות לפי תאים
     booths:
       index:
         title: List of booths
@@ -1326,6 +1482,7 @@ he:
         add_booth: Add booth
         name: Name
         location: Location
+        no_location: No Location
       new:
         title: New booth
         name: Name
@@ -1336,6 +1493,9 @@ he:
         submit_button: Update booth
       show:
         location: Location
+      booth:
+        shifts: ניהול משמרות
+        edit: עריכת תא
     officials:
       edit:
         destroy: הסרת סטטוס 'תפקיד רשמי'
@@ -1345,6 +1505,10 @@ he:
         official_updated: פרטי המשתמש/ת בתפקיד רשמי נשמרו
       index:
         title: תפקידים רשמיים
+        no_officials: אין משתמשים/ות בתפקידים רשמיים
+        name: שם
+        official_position: תפקיד רשמי
+        official_level: רמה
       level_0: משתמשים/ות שאינם בתפקידים רשמיים
       level_1: רמה 1
       level_2: רמה 2
@@ -1355,6 +1519,7 @@ he:
         edit_official: עריכת תפקיד רשמי
         make_official: הפוך למשתמש/ת בתפקיד רשמי
         title: 'תפקידים רשמיים: חיפוש משתמש/ת'
+        no_results: לא נמצאו תפקידים רשמיים
     organizations:
       index:
         filter: סינון
@@ -1374,8 +1539,16 @@ he:
         title: ארגונים
         verified: מאומת
         verify: לאמת
+        name: שם
+        email: דואר אלקטרוני
+        phone_number: מספר טלפון נייד
+        responsible_name: אחראי
+        status: מצב
+        no_organizations: אין אירגונים
+        pending: בהמתנה
       search:
         title: חיפוש ארגונים
+        no_results: לא נמצאו אירגונים
     proposals:
       index:
         filter: סינון
@@ -1384,6 +1557,7 @@ he:
           with_confirmed_hide: מאושר
           without_confirmed_hide: ממתין לאישור
         title: הצעות מוסתרות
+        no_hidden_proposals: אין הצעות מוסתרות
     settings:
       flash:
         updated: הערך עודכן
@@ -1398,10 +1572,19 @@ he:
           disabled: השבתת איפיון תכונות
           enable: אפשר
           disable: להשבית
+        map:
+          title: הגדרות מפה
+          help: כאן ביכולתך להגדיר את צורת תצוגת המפה למשתמש. על ידי גרירת הסמן על
+            המפה או הקלקה בכל מקום על המפה, ניתן לבחור את הזום הרצוי וללחוץ על כפתור
+            "עדכון" לשמירה.
+          flash:
+            update: הגדרת המפה עודכנה בהצלחה.
+          form:
+            submit: עדכן
     shared:
       booths_search:
-        button: Search
-        placeholder: Search booth by name
+        button: חיפוש
+        placeholder: חיפוש תא לפי שם
       poll_officers_search:
         button: חיפוש
         placeholder: חיפוש משתמש/ת בתפקיד רשמי
@@ -1419,6 +1602,9 @@ he:
         placeholder: חיפוש משתמש/ת לפי שם או דואר אלקטרוני
       search_results: תוצאות החיפוש
       no_search_results: לא נמצאו תוצאות
+      actions: פעולות
+      title: כותרת
+      description: תיאור
     spending_proposals:
       index:
         geozone_filter_all: כל האזורים
@@ -1556,6 +1742,7 @@ he:
         direct_messages: הודעות ישירות
         proposal_notifications: הודעות על ההצעה
         incomplete_verifications: כל האימותים מלאים
+        polls: הצבעות
       direct_messages:
         title: הודעות ישירות
         total: סך הכל
@@ -1564,12 +1751,24 @@ he:
         title: הודעות הקשורות להצעה
         total: סך הכל
         proposals_with_notifications: הצעות המאפשרות הודעות
+      polls:
+        title: נתונים סטטיסטיים של ההצבעה
+        all: הצבעות
+        web_participants: משתתפים מהרשת
+        total_participants: סך כל המשתתפים
+        poll_questions: 'שאלות מתוך הצבעה סופית: %{poll}'
+        table:
+          poll_name: הצבעות
+          question_name: שאלה
+          origin_web: משתתפים מהרשת
+          origin_total: סך כל המשתתפים
     tags:
       create: יצירת תגית נושא חדשה
       destroy: מחיקת תגית נושא
       index:
         add_tag: הצעת נושא לדיון חדש
         title: נושאים לדיון
+        topic: נושא
       mark_as_featured: נושא מומלץ עבור יצירת ההצעה
       name:
         placeholder: הקלד/י את שם תגית הנושא
@@ -1583,6 +1782,7 @@ he:
         verification_level: רמת האימות
       index:
         title: משתמש/ת
+        no_users: אין משתמשים/ות
       search:
         placeholder: חיפוש משתמש/ת לפי שם או דואר אלקטרוני או מספר מסמך
         search: חיפוש
@@ -1675,8 +1875,13 @@ he:
         table_actions: Actions
         delete: מחיקת ציון הדרך
         no_milestones: אין ציוני דרך מוגדרים
+        table_publication_date: תאריך פרסום
+        image: תמונה
+        show_image: הראה תמונה
+        documents: מסמכים
       new:
         creating: צור ציון דרך
+        date: תאריך
       edit:
         title: עריכת ציון הדרך
       create:
@@ -1685,6 +1890,65 @@ he:
         notice: עדכון ציון הדרך בוצע בהצלחה
       delete:
         notice: ציון הדרך נמחק
+    poll_shifts:
+      new:
+        add_shift: הוספת משמרת
+        shift: הקצאה
+        shifts: משמרות בתא זה
+        date: תאריך
+        task: משימה
+        edit_shifts: עריכת משמרות
+        new_shift: הוספת משמרת חדשה
+        no_shifts: אין משמרות בתא זה
+        officer: מנהל/ת
+        remove_shift: הסרה
+        search_officer_button: חיפוש
+        search_officer_placeholder: חיפוש מנהל/ת
+        search_officer_text: חיפשו מנהל/ת להקצאה במשמרת
+        select_date: בחירת יום
+        no_voting_days: ימי ההצבעה הסתיימו
+        select_task: בחירת משימה
+        table_shift: משמרת
+        table_email: דואר אלקטרוני
+        table_name: שם
+      flash:
+        create: המשמרת נוספה
+        destroy: המשמרת הוסרה
+        date_missing: חובה להוסיף תאריך
+      vote_collection: איסוף קולות
+      recount_scrutiny: ספירה חוזרת ואבטחה
+    booth_assignments:
+      manage_assignments: ניהול משימות
+      manage:
+        assignments_list: הקצאות להצעה סופית '%{poll}'
+        status:
+          assign_status: הקצאה
+          assigned: הוקצע
+          unassigned: הסרת ההקצעה
+        actions:
+          assign: הקצאת תא
+          unassign: הסרת תא
+    answers:
+      new:
+        title: תשובה חדשה
+      show:
+        title: כותרת
+        description: תיאור
+        images: תמונות
+        images_list: רשימת תמונות
+        edit: עריכת התשובה
+      edit:
+        title: עריכת התשובה
+      videos:
+        index:
+          title: סרטונים
+          add_video: הוספת סרטון
+          video_title: כותרת
+          video_url: קישור לסרטון חיצוני
+        new:
+          title: סרטון חדש
+        edit:
+          title: עריכת קישור לסרטון
   budgets:
     ballots:
       show:
@@ -1724,14 +1988,44 @@ he:
       balloting: הצבעה על הצעות
       reviewing_ballots: סקירת ההצבעות
       finished: תקציב סגור
+      drafting: 
+      publishing_prices: 
     index:
-      title: תקצובים שיתופיים
+      title: תקצובים השתתפותים
+      section_header:
+        icon_alt: סמל התקצוב השתתפותי
+        title: תקצוב השתתפותי
+        help: עזרה על תקצוב השתתפותי
+      section_footer:
+        title: עזרה על תקצוב השתתפותי
+        description: עם תקציבים השתתפותיים האזרחים מחליטים לאילו מהפרויקטים שהוצגו
+          הם מיעדים חלק מהתקציב העירוני
+        help_text_1: Participatory budgets are processes in which citizens decide
+          directly on what is spent part of the municipal budget. Any registered person
+          over 16 years old can propose an investment project that is preselected
+          in a phase of citizen supports.
+        help_text_2: The most voted projects are evaluated and passed to a final vote
+          in which they decide the actions to be carried out by the City Council once
+          the municipal budgets of the next year are approved.
+        help_text_3: The presentation of participatory budgeting projects takes place
+          from January and over a period of one and a half months. To participate
+          and propose proposals for the entire city and / or districts, you must sign
+          up on %{org} and verify your account.
+        help_text_4: To get as many supports and votes as possible, choose a descriptive
+          and understandable headline for your project. Then you have a space to develop
+          the approach of your proposal. Provide all the data and explanations, and
+          even documents and images, to help other participants to better understand
+          what you are proposing.
     investments:
       form:
         tag_category_label: תגיות נושא
-        tags_instructions: תיוג הצעה זו. ניתן לבחור תחום קיים או להוסיף תגית חדשה
+        tags_instructions: לתיוג הצעה זו ניתן לבחור תחום קיים או להוסיף תגית חדשה
         tags_label: תגיות
         tags_placeholder: הזנת תגיות, נא להפריד ביניהן באמצעות פסיקים (,)
+        map_location: מיקום במפה
+        map_location_instructions: יש לנווט במפה למיקום המבוקש ולהניח עליו את הסמן.
+        map_remove_marker: הסרת הסימון מהמפה
+        location: 
       index:
         title: תקציב השתתפותי
         unfeasible: השקעה בפרויקט שאינו בר ביצוע
@@ -1789,7 +2083,9 @@ he:
         comments_tab: תגובות
         milestones_tab: ציוני דרך
         no_milestones: אין ציוני דרך מוגדרים
-        milestone_publish_date: פורסם%{publish_date}
+        milestone_publish_date: פורסם בתאריך%{publish_date}
+        milestone_publication_date: פורסם בתאריך%{publication_date}
+        author: 
       wrong_price_format: רק בסכומים שלמים
       investment:
         add: הצבעה
@@ -1809,8 +2105,10 @@ he:
         change_ballot: אם שינית את דעתך ניתן להסיר את ההצבעה ב %{check_ballot}  ולהתחיל
           שוב.
         check_ballot_link: בדוק את ההצבעה שלי
+        price: 
     progress_bar:
       available: 'זמין:'
+      assigned: 
     show:
       group: קבוצה
       phase: שלב נוכחי
@@ -1992,7 +2290,7 @@ he:
       user_permission_debates: להשתתף בדיונים
       user_permission_info: עם החשבון שלך תוכל/י...
       user_permission_proposal: ליצור הצעות חדשות
-      user_permission_support_proposal: לתמוך בהצעות (למתפקדים בלבד).
+      user_permission_support_proposal: "* לתמוך בהצעות"
       user_permission_title: השתתפות
       user_permission_verify: לבצע את כל הפעולות הנדרשות לאימות החשבון
       user_permission_verify_info: "* רק עבור מתפקדים/ות רשומים/ות"
@@ -2035,6 +2333,7 @@ he:
       most_voted: הכי הרבה הצבעות
       newest: הכי חדשות
       oldest: הכי ישנות
+      most_commented: הכי הרבה תגובות
     select_order: סדר לפי
     show:
       return_to_commentable: בחזרה אל
@@ -2080,6 +2379,7 @@ he:
         hot_score: הכי פעילה
         most_commented: עם הכי הרבה תגובות
         relevance: שייכת לנושא
+        recommendations: מומלצות
       search_form:
         button: חיפוש
         placeholder: חיפוש דיונים ציבוריים...
@@ -2090,6 +2390,25 @@ he:
       select_order: סדר לפי
       start_debate: פתיחת דיון ציבורי חדש
       title: דיונים ציבוריים
+      recommendations:
+        without_results: אין דיונים הקשורים לתחומי העניין שלך
+        without_interests: יש לעקוב אחר הצעות כדי שנוכל לתת לך המלצות
+      section_header:
+        icon_alt: סמל דיונים ציבוריים
+        title: דיונים ציבוריים
+        help: עזרה בנושא דיונים ציבוריים
+      section_footer:
+        title: עזרה בנושא דיונים ציבוריים
+        description: התחלת דיון ציבורי כדי לשתף דעות בנושאים שברצונך לקדם
+        help_text_1: המרחב לדיונים ציבוריים פתוח לכל מי שרוצה להעלות נושאים לקידום
+          ולחלוק דעות עם כלל האזרחים
+        help_text_2: בכדי לפתוח דיון ציבורי עליך להרשם ב %{org}. משתמשים גם יכולים
+          להגיב על דיונים ולדרג אותם
+        help_text_3: דיונים ציבורים אינם מחייבים את קול העם . אם ברצונך לפתוח נושא
+          שמחייב את המפלגה עליך לפתוח הצעה %{proposal} או תקצוב השתתפותי %{budget}
+          כששלב זה יפתח. הצבעה על הצעות פתוחה למתפקדי המפלגה בלבד
+        proposals_link: הצעות
+        budget_link: תקצוב השתתפותי
     new:
       form:
         submit_button: פתיחת דיון ציבורי חדש
@@ -2102,7 +2421,7 @@ he:
         או שפה בוטה.
       recommendation_three: ביקורת חריפה תתקבל בברכה, זה בדיוק המקום לחשוב לעומק,
         אבל נבקשך לשמור על הנימוס ועל השכל הישר, העולם הוא מקום טוב יותר כשיש בו אותם.
-      recommendation_two: כל דיון ציבורי או הצעה שתופיעה בו קריאה לפעילות בלתי חוקית
+      recommendation_two: כל דיון ציבורי או הצעה שתופיע בו קריאה לפעילות בלתי חוקית
         - יימחקו מיד כשיתגלו, ואיתן גם כל דיון ציבורי או הצעה שבאו בכוונה להכפיש או
         לחבל במרחב השיח הציבורי, חוץ מזה הכל מותר.
       recommendations_title: המלצות ליצירת דיון ציבורי
@@ -2118,6 +2437,7 @@ he:
       flag: דיון ציבורי זה סומן כבלתי-ראוי על ידי מספר משתמשים/ות
       login_to_comment: נדרשת %{signin} או %{signup} בכדי להשאיר תגובה
       share: שיתוף
+      author: מחבר/ת
     update:
       form:
         submit_button: שמירת שינויים
@@ -2138,6 +2458,14 @@ he:
     user: חשבון משתמש/ת
     verification/sms: מספר טלפון נייד
     signature_sheet: גיליון חתימה
+    not_saved_html: נתון זה %{resource} מונע את פעולת השמירה. <br>נא לבדוק את השדות
+      המסומנים כדי לדעת כיצד לתקנם
+    poll/shift: משמרת
+    poll/question/answer: תשובה
+    document: מסמך
+    topic: נושא
+    image: תמונה
+    budget/heading: 
   geozones:
     none: כל הרשויות
     all: כל התחומים
@@ -2230,6 +2558,7 @@ he:
         one: מישהו השיב לתגובה שלך לגבי
         other: יש %{count} תגובות חדשות להערה שלך לגבי
       title: הודעות
+      notifiable_hidden: משאב זה אינו זמין עוד
   map:
     title: אזור גאוגרפי
     proposal_for_district: העלאת הצעה בנוגע לאזור הגיאורפי שלך
@@ -2271,8 +2600,8 @@ he:
       retired_reason_label: הסיבה להסרת ההצעה
       retired_reason_blank: בחר/י אפשרות
       retired_explanation_label: הסבר
-      retired_explanation_placeholder: הסבר/י בקיצור מדוע לדעתך לא כדאי לתמוך בהצעה
-        זו כבר
+      retired_explanation_placeholder: הסבר/י בקצרה מדוע לדעתך לא כדאי לקדם ולתמוך
+        בהצעה זו יותר
       submit_button: הסרת הצעה
     retire_options:
       duplicated: כפולות
@@ -2283,18 +2612,18 @@ he:
     form:
       geozone: היקף הפעילות
       proposal_external_url: קישור למידע נוסף
-      proposal_question: השאלה המוצעת
+      proposal_question: שאלה מוצעת
       proposal_question_example_html: את ההצעה חייבים לסכם בצורה שהתשובה עליה תהיה
         [כן] או [לא]. <em>- למשל 'האם לדעתך צריך חוק להגבלת כהונת ראש ממשלה בישראל?'</em>
       proposal_responsible_name: שם ושם משפחה מלא של מציע/ת ההצעה
-      proposal_responsible_name_note: "(כאדם פרטי או כנציג/ה של התאגדות תושבים. השם
+      proposal_responsible_name_note: "(כאדם פרטי או כנציג/ה של התאגדות אזרחית. השם
         יישמר חסוי בפני שאר המשתמשים)"
       proposal_summary: תקציר ההצעה
       proposal_summary_note: "(200 תווים לכל היותר)"
       proposal_text: מלל ההצעה
       proposal_title: כותרת ההצעה
       proposal_video_url: קישור לוידאו חיצוני
-      proposal_video_url_note: ניתן להדביק קישור ל-YouTube או Vimeo
+      proposal_video_url_note: ניתן להדביק קישור ל YouTube או Vimeo
       tag_category_label: נא לרשום את כל התגיות שברצונך להשתמש בהן, עם פסיק (',')
         מפריד ביניהן
       tags_instructions: הוספת תגיות נושא בתחום הנוגע להצעה זו. ניתן לבחור תגית קיימת
@@ -2302,6 +2631,10 @@ he:
       tags_label: תגיות
       tags_placeholder: נא לרשום את כל התגיות שברצונך להשתמש בהן, עם פסיק (',') מפריד
         ביניהן
+      map_location: מיקום במפה
+      map_location_instructions: יש לנווט במפה למיקום המבוקש ולהניח עליו את הסמן.
+      map_remove_marker: הסרת הסימון מהמפה
+      map_skip_checkbox: הצעה זו אינה מוגבלת לאזור גאוגרפי מסויים
     index:
       featured_proposals: מוצע
       filter_topic:
@@ -2314,6 +2647,7 @@ he:
         most_commented: עם הכי הרבה תגובות
         relevance: נוגעת לעניין
         archival_date: הועברה לגניזה
+        recommendations: מומלצות
       retired_proposals: הצעות שהוסרו
       retired_proposals_link: הצעות שהוסרו על-ידי המחבר/ת
       retired_links:
@@ -2336,6 +2670,24 @@ he:
       title: הצעות
       top: בראש סדר-היום השבוע
       top_link_proposals: ההצעות שצברו הכי הרבה תמיכה, לפי נושא
+      recommendations:
+        without_results: אין הצעות הקשורות לתחומי העניין שלך
+        without_interests: יש לעקוב אחר הצעות כדי שנוכל לתת לך המלצות
+      section_header:
+        icon_alt: סמל הצעות
+        title: הצעות
+        help: עזרה בנושא הצעות
+      section_footer:
+        title: עזרה בנושא הצעות
+        description: מומלץ להעלות במודול הצעות. אם הצעתך תקבל מספיק תמיכה מהמתפקדים
+          היא תעבור לשלב ההצבעה, לאחר דיון מקצועי.
+        help_text_1: הצעות הן הזדמנות לאזרחים להעביר רעיונות ישירות למפלגה. ביכולתך
+          להעלות הצעה על כל נושא שמעניין אותך לקדם, אם הצעה מקבלת מספיק תמיכה מהמתפקדים,
+          היא תקודם להצבעה סופית לאחר דיון מקצועי.
+        help_text_2: בכדי ליצור הצעה עליך להרשם ב %{org}. הצעה שתקבל תמיכה של 10%
+          מהמתפקדים תעבור לדיון מקצועי ולהצבעה סופית
+        help_text_3: דיונים ציבוריים מטרתם לקדם נושאים. אם יש יותר אנשים בעד מאשר
+          נגד הדיון, הדיון יעלה לראש הרשימה
     new:
       form:
         submit_button: פרסום ההצעה
@@ -2345,7 +2697,7 @@ he:
       recommendation_three: ביקורת חריפה תתקבל בברכה - כאן בדיוק המקום לחשוב לעומק.
         אבל נבקשך לשמור על הנימוס ועל השכל הישר, לשמור על שיח ענייני ומכבד, להמנע
         מהתקפות אישיות או שפה בוטה.
-      recommendation_two: כל דיון ציבורי או הצעה שתופיעה בו קריאה לפעילות בלתי חוקית
+      recommendation_two: כל דיון ציבורי או הצעה שתופיע בו קריאה לפעילות בלתי חוקית
         יימחקו מיד כשיתגלו, ואיתן גם כל דיון ציבורי או הצעה שבאו בכוונה להכפיש או
         לחבל במרחב השיח הציבורי, חוץ מזה הכל מותר
       recommendations_title: המלצות ליצירת הצעה חדשה
@@ -2377,6 +2729,10 @@ he:
       archived: הצעה זו נגנזה ולא תוכל לצבור עוד תמיכה.
       successful: הצעה זו הגיעה לתמיכה הנדרשת ותעלה להצבעה ב%{voting}.
       voting: הצבעה הבאה
+      votes:
+        one: הצבעה 1
+        other: "%{count} הצבעות"
+        zero: אין הצבעות
     show:
       author_deleted: משתמש/ת זה/ו נמחק/ה
       code: 'קוד ההצעה:'
@@ -2396,6 +2752,9 @@ he:
       send_notification: שלח/י הודעה
       no_notifications: יש בהצעה זו הודעות נוספות כלשהן.
       embed_video_title: סרטון וידאו ב %{proposal}
+      title_external_url: קישור למסמכים נוספים
+      title_video_url: קישור לסרטון וידאו חיצוני
+      author: מחבר/ת
     update:
       form:
         submit_button: שמור שינויים
@@ -2406,9 +2765,9 @@ he:
     final_date: סיכום תוצאות סופיות
     index:
       filters:
-        current: פתיחה
-        incoming: מתקרב
-        expired: לא בתוקף
+        current: הצבעות פתוחות
+        incoming: הצבעות מתקרבות
+        expired: הצבעות שהסתיימו
       title: הצבעות
       participate_button: השתתפות בהצבעה זו
       participate_button_incoming: מידע נוסף
@@ -2421,6 +2780,19 @@ he:
       cant_answer_not_logged_in: נדרשת התחברות או הרשמה בכדי להשתתף
       cant_answer_verify: עליך לאמת את חשבונך על מנת להגיב
       already_answer: השתתפת כבר בהצבעה זו
+      section_header:
+        icon_alt: סמל הצבעות
+        title: הצבעות
+        help: עזרה בנושא הצבעות סופיות
+      section_footer:
+        title: עזרה בנושא הצבעות סופיות
+        description: יש להרשם למערכת בכדי להצביע על הדיונים הציבוריים ולהתפקד לקול
+          העם בכדי לתמוך בהצעות ולהשתתף בהצבעות
+        help_text_1: שלב ההצבעה מתבצע כאשר הצעה מגיעה ל-10% תמיכה של כלל המתפקדים,
+          אולם הצבעה יכולה לכלול גם שאלות שהמפלגה מבקשת מהמתפקדים להחליט לגביהן.
+        help_text_2: כדי להשתתף בהצבעה הבאה עליך להתפקד ל %{org} ולאמת את חשבונך.
+          כל המתפקדים המאומתים במערכת מעל גיל 18 יכולים להצביע. תוצאות ההצבעה מחייבות
+          את קול העם.
     show:
       dates_title: תאריכי השתתפות
       cant_answer_not_logged_in: נדרשת %{signin} או %{signup} בכדי להשתתף
@@ -2430,15 +2802,47 @@ he:
       verify_link: לאמת את חשבונך
       cant_answer_incoming: הצבעה סופית זו טרם התחילה
       cant_answer_expired: הצבעה סופית זו הסתיימה
+      already_voted_in_booth: לפי הרישום שלנו כבר השתתפת בהצבעה זו בדוכן פיזי. אינך
+        יכול/ה להשתתף שוב.
+      already_voted_in_web: כבר השתתפת בהצבעה זו. הצבעה חוזרת תמחק ותחליף את הצבעתך
+        הקודמת.
+      back: חזרה אל ההצבעה
+      comments_tab: תגובות
+      login_to_comment: נדרשת %{signin} או %{signup} בכדי להשאיר תגובה
+      cant_answer_wrong_geozone: שאלה זו אינה תקפה לאזור הגאוגרפי שלך
+      more_info_title: מידע נוסף
+      documents: מסמכים
+      zoom_plus: הגדלת התמונה
+      read_more: קריאת יותר פרטים על  %{answer}
+      read_less: קריאת פחות פרטים על  %{answer}
+      participate_in_other_polls: השתתפות בהצבעות נוספות
+      videos: קישור לסרטון חיצוני
+      info_menu: מידע
+      stats_menu: סטטיסטיקות השתתפות
+      results_menu: תוצאות הצבעה
+      stats:
+        title: תאריכי השתתפות
+        total_participation: סך כל המשתתפים
+        total_votes: סך כל ההצבעות הנתונות
+        votes: הצבעות
+        web: הצבעה ברשת
+        booth: BOOTH
+        total: סך הכל
+        valid: תקין
+        white: פתקים ריקים
+        null_votes: לא תקין
+      results:
+        title: שאלות
+        most_voted_answer: תגובות עם רוב הצבעות
   poll_questions:
     create_question: יצירת שאלה חדשה
     default_valid_answers: כן, לא
     show:
-      answer_this_question: ענה/י תשובה לשאלה זו
+      answer_this_question: חזרה להצבעה
       original_proposal: ההצעה המקורית
       author: נוצרה על ידי
       dates_title: תאריכי השתתפות
-      more_info: תוכן ההצעה
+      more_info: מידע נוסף
       not_logged_in: נדרשת %{signin} או %{signup} בכדי להשתתף
       signin: התחברות
       signup: הרשמה
@@ -2450,6 +2854,8 @@ he:
       vote_answer: הצבעה %{answer}
       voted: עליך להצביע %{answer}
       poll: הצבעה סופית
+      voted_token: ביכולתך להעתיק ולשמור את מזהה ההצבעה, כדי לעקוב אחר התוצאות הסופיות:של
+        הצבעה זו
   proposal_notifications:
     new:
       title: שליחת הודעה
@@ -2559,6 +2965,12 @@ he:
           notice_html: הפסקת לעקוב אחרי הצעה זו </br> לא ישלחו התראות נוספות לגביה.
     unfollow: הפסק לעקוב
     unfollow_entity: הפסק לעקוב%{entity}
+    following: הבא
+    share: שתף
+    orbit:
+      previous_slide: שקופית קודמת
+      next_slide: שקופית הבאה
+    documentation: מסמכים נוספים
   social:
     blog: "%{org} בלוג"
     facebook: "%{org} פייסבוק"
@@ -2674,10 +3086,16 @@ he:
       no_private_messages: משתמש/ת זה/זו אינו/ה מקבל/ת פניות אישיות.
       private_activity: משתמש/ת זה/ו בחר/ה לשמור בפרטי את רשימת הפעילויות שלו/ה
       send_private_message: שליחת פנייה אישית
+      proposals: הצעות
+      debates: דיונים ציבוריים
+      budget_investments: תקציבים להשקעה
+      comments: תגובות
+      actions: פעולות
     proposals:
       send_notification: שליחת הודעה
       retire: לפרוש
       retired: פרשת מזה
+      see: צפייה בהצעה
   votes:
     agree: אני מסכים/ה
     anonymous: יותר מדי קולות אנונימיים לאמת את ההצבעה %{verify_account}.
@@ -2736,6 +3154,18 @@ he:
       user_permission_verify_info: "* רק עבור משתמשים/ות רשומים/ות"
       user_permission_verify_my_account: אמת את החשבון שלי
       user_permission_votes: להשתתף בהצבעה סופית
+    recommended:
+      title: |2-
+
+        המלצות שעשויות לעניין אותך
+      debates:
+        title: דיונים מומלצים
+        btn_text_link: כל הדיונים המומלצים
+      proposals:
+        title: הצעות מומלצות
+        btn_text_link: כל ההצעות המומלצות
+      budget_investments:
+        title: השקעות מומלצות
   invisible_captcha:
     sentence_for_humans: אם אינך רובוט/ית, אפשר בבקשה להתעלם מהשדה הזה
     timestamp_error_message: מצטערים, זה היה מהיר מדי, נא לשלוח שוב
@@ -2803,6 +3233,20 @@ he:
         no_open_processes: אין תהליכים פתוחים
         no_next_processes: אין תהליכים מתוכננים
         no_past_processes: אין תהליכים קודמים
+        section_header:
+          icon_alt: סמל תהליכי חקיקה
+          title: תהליכי חקיקה
+          help: עזרה בנושא תהליכי חקיקה
+        section_footer:
+          title: עזרה בנושא תהליכי חקיקה
+          description: השתתפות בדיונים ובתהליכים מקדימים לאישור מתפקדי המפלגה. דעתך
+            תשקל על ידי המפלגה.
+          help_text_1: בתהליכים השתתפותיים, קול העם מציעה לאזרחים את ההזדמנות להשתתף
+            בניסוח ושינוי של חוקים, להשפיע על ניהול המדינה ולהיות מסוגל לחוות דעה
+            על יוזמות שהמפלגה מתכננת לקדם.
+          help_text_2: אזרחים המתפקדים ל %{org} יכולים לתמוך בהצעות, להצביע ולהשפיע
+            על ההצבעות הסופיות אליהן המפלגה מחוייבת
+          help_text_3: מערכת ההצבעות פתוחה גם לכלל האזרחים במודול דיונים ציבוריים
       phase_not_open:
         not_open: שלב זה לא נפתח עדיין
       phase_empty:
@@ -2816,6 +3260,9 @@ he:
         draft_publication_date: פרסום טיוטה
         allegations_dates: טענות
         result_publication_date: פרסום תוצאות סופית
+        proposals_dates: הצעות
+      proposals:
+        empty_proposals: אין הצעות
     questions:
       comments:
         comment_button: פרסום תשובה
@@ -2847,6 +3294,11 @@ he:
     shared:
       share: שתף
       share_comment: תגובה על %{version_name} מתוך טיוטת תהליך דיון מקצועי %{process_name}
+    proposals:
+      form:
+        tags_label: קטגוריות
+      not_verified: להצבעות על ההצעה %{verify_account}.
+      closed: תהליך זה הסתיים ולא ניתן לקבל הצבעות
   mailers:
     no_reply: נא לא להשיב להודעה זו. ההודעה נשלחה מכתובת דואר אלקטרוני שאינה מקבלת
       הודעות חוזרות.
@@ -3192,6 +3644,7 @@ he:
       voters: Validate document
       recounts: Store recount
       final_recounts: Final recounts and results
+      total_recounts: Total recounts and results
     polls:
       index:
         title: Poll list
@@ -3249,18 +3702,20 @@ he:
         date: Date
         select_booth: Select booth
         select_date: Select date
-        ballots_white: Blank ballots
+        ballots_white: Totally blank ballots
         ballots_null: Invalid ballots
         submit: Save
         results_list: התוצאות שלך
-        see_results: See resultsSee results
+        see_results: צפייה בתוצאות
+        ballots_total: Total ballots
       index:
         no_results: No results
         results: Results
         table_answer: תשובה
         table_votes: Votes
-        table_whites: Blank ballots
+        table_whites: Totally blank ballots
         table_nulls: Invalid ballots
+        table_total: Total ballots
     residence:
       flash:
         create: מסמך מאומת מול מאגר הנתונים
@@ -3276,12 +3731,15 @@ he:
       new:
         title: הצבעות סופיות
         table_poll: הצבעה סופית
-        table_actions: Polls status
+        table_actions: Actions
+        table_status: נתונים סטטיסטיים של ההצבעה
       show:
         can_vote: Can vote
         error_already_voted: Has already participated in this poll
         submit: Confirm vote
         success: Vote introduced!
+      can_vote:
+        submit_disable_with: Wait, confirming vote...
   pages:
     census_terms: כדי לאמת את החשבון, עליך להיות בגיל 18 ומעלה ולהתפקד לקול העם. לאחר
       שסיפקת את המידע המבוקש בטופס האישור, המידע יאומת. בהסכמתך לתהליך האימות, את/ה
@@ -3335,8 +3793,8 @@ he:
           קיימא ובכמה יש לתקצב אותם
         feature_4_html: בשלב השלישי האחרון יש<strong>הצבעה </strong> בה יוחלט סכום
           התקציב שיוקצה
-        image_alt: שלבים שונים של התקציב ההשתתפותי
-        figcaption_html: "“שלב התמיכה ושלב ההצבעה על התקציב ההשתתפותי”"
+        image_alt: שלבים שונים של התקצוב ההשתתפותי
+        figcaption_html: שלב התמיכה ושלב ההצבעה על התקצוב ההשתתפותי
       polls:
         title: הצבעות סופיות
         description: הצעת מתפקד/ת שהגיעה ל- 10% של תמיכה תעבור להצבעה
@@ -3421,6 +3879,12 @@ he:
       spending_proposal_features:
         voting_allowed: להצביע על מיזמים להשקעה
       legislation: דיון מקצועי
+      proposals: הצעות
+      user:
+        recommendations: מומלצות
+      community: Community on proposals and investments
+      map: Proposals and budget investments geolocation
+      allow_images: Allow upload and show images
     mailer_from_name: Origin email name
     mailer_from_address: Origin email address
     meta_description: Site description (SEO)
@@ -3430,6 +3894,10 @@ he:
     proposal_improvement_path: Proposal improvement info internal link
     per_page_code_head: Code to be included on every page (<head>)
     per_page_code_body: Code to be included on every page (<body>)
+    map_latitude: Latitude
+    map_longitude: Longitude
+    map_zoom: Zoom
+    meta_title: Site title (SEO)
   valuation:
     header:
       title: הערכה
@@ -3671,3 +4139,131 @@ he:
         phone_title: מספר טלפון נייד
         title: זמינות מידע
         use_another_phone: השתמש במספר נייד אחר
+  community:
+    sidebar:
+      title: קהילה
+      description:
+        proposal: השתתפות בקהילת המשתמשים של הצעה זו.
+        investment: השתתפות בקהילת המשתמשים של השקעה זו.
+      button_to_access: גישה אל הקהילה
+    show:
+      title:
+        proposal: הצעת הקהילה
+        investment: תקציב השקעות הקהילה
+      description:
+        proposal: השתתפות הקהילה בהצעה זו. קהילה פעילה יכולה לעזור לשפר את תוכן ההצעה
+          ולהגביר את הפצתה כדי לקבל תמיכה נוספת.
+        investment: השתתפות הקהילה בתקצוב להשקעה זה. קהילה פעילה יכולה לעזור לשפר
+          את תוכן תקצוב להשקעה זה ולהגביר את הפצתו כדי לקבל תמיכה נוספת.
+      create_first_community_topic:
+        first_theme_not_logged_in: אין סוגיה זמינה בנושא זה, יש ליצור את הנושא לראשונה
+        first_theme: יצירת נושא קהילתי ראשון
+        sub_first_theme: בכדי ליצור נושא נדרשת %{sign_in} או %{sign_up}.
+        sign_in: התחברות
+        sign_up: הרשמה
+      tab:
+        participants: השתתפויות
+      sidebar:
+        participate: השתתפות
+        new_topic: יצירת נושא
+      topic:
+        edit: עריכת נושא
+        destroy: מחיקת נושא
+        comments:
+          one: תגובה 1
+          other: "%{count} תגובות"
+          zero: אין תגובות
+      author: מחבר/ת
+      back: חזרה אל %{community} %{proposal}
+    topic:
+      create: יצירת נושא
+      edit: עריכת נושא
+      form:
+        topic_title: כותרת
+        topic_text: טקסט ראשוני
+        new:
+          submit_button: צור נושא
+        edit:
+          submit_button: עריכת נושא
+        create:
+          submit_button: צור נושא
+        update:
+          submit_button: עדכון הנושא
+      show:
+        tab:
+          comments_tab: תגובות
+      sidebar:
+        recommendations_title: המלצות ליצירת נושא
+        recommendation_one: בכתיבה נבקשך לשמור על שיח ענייני ומכבד, להמנע מהתקפות
+          אישיות או שפה בוטה.
+        recommendation_two: כל נושא או תגובה שתופיע בו קריאה לפעילות בלתי חוקית יימחקו
+          מיד כשיתגלו, ואיתן גם כל דיון ציבורי או הצעה שבאו בכוונה להכפיש או לחבל
+          במרחב השיח הציבורי, חוץ מזה הכל מותר
+        recommendation_three: אנו מזמינים אותך ליהנות מהמרחב הזה ומהקולות הנשמעים
+          בו, הוא שייך גם לך
+  topics:
+    show:
+      login_to_comment: נדרשת %{signin} או %{signup} בכדי להשאיר תגובה
+  images:
+    remove_image: הסרת תמונה
+    form:
+      title: תיאור התמונה
+      title_placeholder: הוספת כותרת תיאור עבור התמונה
+      attachment_label: נא לבחור תמונה
+      delete_button: הסרת תמונה
+      note: 'ניתן להעלות תמונה אחת מסוגי התוכן הבאים: %{accepted_content_types}, ועד
+        ל %{max_file_size} MB.'
+      add_new_image: הוספת תמונה
+      admin_title: תמונה
+      admin_alt_text: מלל חלופי עבור התמונה
+    actions:
+      destroy:
+        notice: התמונה נמחקה בהצלחה
+        alert: לא ניתן למחוק את התמונה
+        confirm: האם את/ה בטוח/ה שברצונך למחוק תמונה זו? פעולה זו אינה ניתנת לביטול
+    errors:
+      messages:
+        in_between: חייב להיות בין %{min} לבין %{max}
+        wrong_content_type: סוג התוכן %{content_type} אינו תואם לאף אחד מסוגי התוכן
+          המקובלים %{accepted_content_types}
+  related_content:
+    title: תוכן קשור
+    add: הוספת תוכן קשור
+    label: הוספת קישור לתוכן
+    placeholder: "%{url}"
+    help: ניתן להוסיף קישורים אל %{models} בתוך %{org}.
+    submit: הוספה
+    error: הקישור אינו זמין, נא לשים לב שהכתובת מתחילה ב %{url}.
+    success: נוסף קישור חדש לתוכן בהצלחה
+    is_related: האם זה קשור לתוכן?
+    score_positive: כן
+    score_negative: לא
+    content_title:
+      proposal: הצעה
+      debate: דיון ציבורי
+  documents:
+    tab: מסמכים
+    no_documents: אין מסמכים שהועלו
+    max_documents_allowed_reached_html: הגעת למספר המירבי של מסמכים המותר להעלאה!
+      <strong> עליך למחוק מסמך לפני שניתן יהיה להעלות מסמך נוסף.</strong>
+    form:
+      title: מסמכים
+      title_placeholder: הוספת כותרת תיאור עבור המסמך
+      attachment_label: בחירת מסמך
+      delete_button: הסרת מסמך
+      note: 'ניתן לטעון עד %{max_documents_allowed} מסמכים מסוגי התוכן הבאים: %{accepted_content_types},
+        ועד ל %{max_file_size} MB גודל קובץ.'
+      add_new_document: הוספת מסמך חדש
+    actions:
+      destroy:
+        notice: המסמך נמחק בהצלחה
+        alert: לא ניתן למחוק את המסמך
+        confirm: האם את/ה בטוח/ה שברצונך למחוק מסמך זה? פעולה זו אינה ניתנת לביטול
+    buttons:
+      download_document: הורדת המסמך למחשבך
+      destroy_document: מחיקה
+    errors:
+      messages:
+        in_between: חייב להיות בין %{min} לבין %{max}
+        wrong_content_type: סוג התוכן %{content_type} אינו תואם לאף אחד מסוגי התוכן
+          המקובלים %{accepted_content_types}
