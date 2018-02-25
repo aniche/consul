@@ -584,8 +584,8 @@ DEPENDENCIES
   uglifier (~> 4.1.2)
   unicorn (~> 5.4.0)
   web-console (~> 3.3.0)
-  woocommerce_api
   whenever (~> 0.10.0)
+  woocommerce_api
 
 BUNDLED WITH
    1.16.0

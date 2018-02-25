@@ -58,6 +58,9 @@ class CensusApi
   private
 
     def get_response_body(document_type, document_number,user)
+      if not user
+        return nil
+      end
       Rails.logger.info  "get_response_body " + user.email
       all  = client.get("customers?email=" + user.email).parsed_response #client.call(:get_habita_datos, message: request(document_type, document_number)).bodyi
       all.each do |a|
