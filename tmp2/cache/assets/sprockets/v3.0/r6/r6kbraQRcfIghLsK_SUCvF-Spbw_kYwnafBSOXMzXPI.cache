@@ -1,0 +1,32 @@
+I"](function() {
+  App.Suggest = {
+    initialize: function() {
+      return $('[data-js-suggest-result]').each(function() {
+        var $this, callback;
+        $this = $(this);
+        callback = function() {
+          return $.ajax({
+            url: $this.data('js-url'),
+            data: {
+              search: $this.val()
+            },
+            type: 'GET',
+            dataType: 'html',
+            success: function(stHtml) {
+              var js_suggest_selector;
+              js_suggest_selector = $this.data('js-suggest');
+              return $(js_suggest_selector).html(stHtml);
+            }
+          });
+        };
+        $this.on('keyup', function() {
+          window.clearTimeout(callback);
+          return window.setTimeout(callback, 1000);
+        });
+        return $this.on('change', callback);
+      });
+    }
+  };
+
+}).call(this);
+:ET

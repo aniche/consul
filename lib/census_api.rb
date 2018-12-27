@@ -78,13 +78,14 @@ class CensusApi
 
 
       @client = WooCommerce::API.new(
-        "http://www.kolhaam.org.il",
-        "ck_1ef0696d317d1272b2d3fa3152f50155ad72ecb5",
-        "cs_778561b003ad3bd565428e3ffea465de7a65136b",
-        {
-          wp_api: true,
-          version: "wc/v1",
-         verify_ssl: false 
+  "https://www.kolhaam.org.il",
+  "ck_205529e492b048e267941e07f13786debc7aa9a5",#"ck_b730278f9da7890772b9a9261bba4a1c00611a7e",
+  "cs_235fb605f04b86f90dc7e1f3b7c34e03d7aa2e24",#"cs_bd56d96715b1591462528550ccdc202903e2c483",
+  {
+    wp_api: true,
+    version: "wc/v1",
+     query_string_auth:true       
+
         }
       )
     end

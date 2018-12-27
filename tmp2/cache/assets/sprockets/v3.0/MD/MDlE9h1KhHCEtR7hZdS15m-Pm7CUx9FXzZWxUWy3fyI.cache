@@ -1,0 +1,50 @@
+I"Ä(function() {
+  App.TreeNavigator = {
+    setNodes: function(nodes) {
+      var children;
+      children = nodes.children('ul');
+      if (children.length === 0) {
+        return;
+      }
+      return children.each(function() {
+        var link;
+        link = $(this).prev('a');
+        $('<span class="open"></span>').insertBefore(link);
+        return App.TreeNavigator.setNodes($(this).children());
+      });
+    },
+    initialize: function() {
+      var anchor, elem, link, ul;
+      elem = $('[data-tree-navigator]');
+      if (elem.length === 0) {
+        return;
+      }
+      ul = elem.find('ul:eq(0)');
+      if (ul.length && ul.children().length) {
+        App.TreeNavigator.setNodes(ul.children());
+      }
+      $('[data-tree-navigator] span').on({
+        click: function(e) {
+          elem = $(this);
+          if (elem.hasClass('open')) {
+            elem.removeClass('open').addClass('closed');
+            return elem.siblings('ul').hide();
+          } else if (elem.hasClass('closed')) {
+            elem.removeClass('closed').addClass('open');
+            return elem.siblings('ul').show();
+          }
+        }
+      });
+      if (anchor = $(location).attr('hash')) {
+        if (link = elem.find('a[href="' + anchor + '"]')) {
+          return link.parents('ul').each(function() {
+            $(this).show();
+            return $(this).siblings('span').removeClass('closed').addClass('open');
+          });
+        }
+      }
+    }
+  };
+
+}).call(this);
+:ET

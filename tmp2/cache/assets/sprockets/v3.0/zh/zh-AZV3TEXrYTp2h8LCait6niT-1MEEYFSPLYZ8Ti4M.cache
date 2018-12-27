@@ -1,0 +1,18 @@
+I"–(function() {
+  App.CheckboxToggle = {
+    initialize: function() {
+      return $('[data-checkbox-toggle]').on('change', function() {
+        var $target, $this;
+        $this = $(this);
+        $target = $($this.data('checkbox-toggle'));
+        if ($this.is(':checked')) {
+          return $target.show();
+        } else {
+          return $target.hide();
+        }
+      });
+    }
+  };
+
+}).call(this);
+:ET

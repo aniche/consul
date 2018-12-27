@@ -1,0 +1,44 @@
+I"¯(function() {
+  App.WatchFormChanges = {
+    forms: function() {
+      return $('form[data-watch-changes]');
+    },
+    msg: function() {
+      if (($('[data-watch-form-message]').length)) {
+        return $('[data-watch-form-message]').data('watch-form-message');
+      }
+    },
+    checkChanges: function(event) {
+      var changes;
+      changes = false;
+      App.WatchFormChanges.forms().each(function() {
+        var form;
+        form = $(this);
+        if (form.serialize() !== form.data('watchChanges')) {
+          return changes = true;
+        }
+      });
+      if (changes) {
+        return confirm(App.WatchFormChanges.msg());
+      } else {
+        return true;
+      }
+    },
+    initialize: function() {
+      if (App.WatchFormChanges.forms().length === 0 || App.WatchFormChanges.msg() === void 0) {
+        return;
+      }
+      $(document).off('page:before-change').on('page:before-change', function(e) {
+        return App.WatchFormChanges.checkChanges(e);
+      });
+      App.WatchFormChanges.forms().each(function() {
+        var form;
+        form = $(this);
+        return form.data('watchChanges', form.serialize());
+      });
+      return false;
+    }
+  };
+
+}).call(this);
+:ET

@@ -1,0 +1,48 @@
+I"m(function() {
+  var _t;
+
+  _t = function(key) {
+    return new Gettext().gettext(key);
+  };
+
+  App.Annotatable = {
+    initialize: function() {
+      var current_user_id;
+      current_user_id = $('html').data('current-user-id');
+      if (current_user_id === "") {
+        annotator.ui.editor.Editor.template = ['<div class="annotator-outer annotator-editor annotator-hide">', '  <form class="annotator-widget">', '    ' + _t('Unregistered'), '    <div class="annotator-controls">', '      <a href="#cancel" class="annotator-cancel">' + _t('Cancel') + '</a>', '    </div>', '  </form>', '</div>'].join('\n');
+      }
+      return $("[data-annotatable-type]").each(function() {
+        var $this, ann_id, ann_type, app;
+        $this = $(this);
+        ann_type = $this.data("annotatable-type");
+        ann_id = $this.data("annotatable-id");
+        app = new annotator.App().include(function() {
+          return {
+            beforeAnnotationCreated: function(ann) {
+              ann[ann_type + "_id"] = ann_id;
+              ann.permissions = ann.permissions || {};
+              return ann.permissions.admin = [];
+            }
+          };
+        }).include(annotator.ui.main, {
+          element: this
+        }).include(annotator.storage.http, {
+          prefix: "",
+          urls: {
+            search: "/annotations/search"
+          }
+        });
+        return app.start().then(function() {
+          var options;
+          app.ident.identity = current_user_id;
+          options = {};
+          options[ann_type + "_id"] = ann_id;
+          return app.annotations.load(options);
+        });
+      });
+    }
+  };
+
+}).call(this);
+:ET

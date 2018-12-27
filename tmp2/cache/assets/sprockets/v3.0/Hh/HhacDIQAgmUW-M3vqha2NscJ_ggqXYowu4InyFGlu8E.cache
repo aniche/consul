@@ -1,0 +1,14 @@
+I"L(function() {
+  App.SocialShare = {
+    initialize: function() {
+      return $(".social-share-button a").each(function() {
+        var element, site;
+        element = $(this);
+        site = element.data('site');
+        return element.append("<span class='show-for-sr'>" + site + "</span>");
+      });
+    }
+  };
+
+}).call(this);
+:ET

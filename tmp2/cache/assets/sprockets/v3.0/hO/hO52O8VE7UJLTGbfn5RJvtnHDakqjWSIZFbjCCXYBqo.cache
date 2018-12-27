@@ -1,0 +1,13 @@
+I"7(function() {
+  App.ModeratorDebates = {
+    add_class_faded: function(id) {
+      $("#" + id).addClass("faded");
+      return $("#comments").addClass("faded");
+    },
+    hide_moderator_actions: function(id) {
+      return $("#" + id + " .js-moderator-debate-actions:first").hide();
+    }
+  };
+
+}).call(this);
+:ET

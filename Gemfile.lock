@@ -188,7 +188,7 @@ GEM
     hashie (3.5.7)
     highline (1.7.10)
     htmlentities (4.3.4)
-    httparty (0.15.6)
+    httparty (0.16.2)
       multi_xml (>= 0.5.2)
     httpi (2.4.2)
       rack

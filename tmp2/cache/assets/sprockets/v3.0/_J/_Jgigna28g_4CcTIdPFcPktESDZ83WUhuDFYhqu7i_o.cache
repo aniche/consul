@@ -1,0 +1,11 @@
+I"á(function() {
+  App.LocationChanger = {
+    initialize: function() {
+      return $('.js-location-changer').on('change', function() {
+        return window.location.assign($(this).val());
+      });
+    }
+  };
+
+}).call(this);
+:ET

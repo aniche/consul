@@ -1,0 +1,14 @@
+I"O(function() {
+  App.Followable = {
+    update: function(followable_id, button, notice) {
+      $("#" + followable_id + " .js-follow").html(button);
+      if ($('[data-alert]').length > 0) {
+        return $('[data-alert]').replaceWith(notice);
+      } else {
+        return $("body").append(notice);
+      }
+    }
+  };
+
+}).call(this);
+:ET

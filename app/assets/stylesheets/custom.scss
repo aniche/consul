@@ -7,7 +7,8 @@
 @import 'https://fonts.googleapis.com/css?family=Open+Sans';
 .top-links,.top-bar ,.top-bar-title a {color:#5A1252 }
 /*header,.top-bar{background-color:#C5CCDF}*/
-body{direction:rtl}
+body{direction:rtl;font-family: 'Assistant', sans-serif !important;}
+h1, h2, h3, h4, h5, h6{font-family: 'Assistant', sans-serif !important;}
 .close-button{left:1rem}
 .advanced-search{float:left;left:0;direction:ltr}
 .column{float:right}
@@ -19,12 +20,12 @@ body{direction:rtl}
 .banner-style-six {background-color:#C5CCDF}
 .top-bar .top-bar-title a img {
     height: 52px;
-    margin-right: 0.75rem;
+    margin-left: 0.75rem;
     margin-top: 15px;
     width: 52px;
 }
 
-.top-bar-title{font-family: 'Open Sans', sans-serif;}
+.top-bar-title{font-family: 'Assistant', sans-serif;}
 .featured-proposals{background-color:#B5A0B3!important}
 .wide-order-selector {
 

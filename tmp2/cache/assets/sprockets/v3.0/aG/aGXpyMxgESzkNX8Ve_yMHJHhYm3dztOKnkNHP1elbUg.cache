@@ -1,0 +1,39 @@
+I"Í(function() {
+  App.Tracks = {
+    tracking_enabled: function() {
+      return typeof _paq !== "undefined" && _paq !== null;
+    },
+    set_custom_var: function(id, name, value, scope) {
+      _paq.push(['setCustomVariable', id, name, value, scope]);
+      return _paq.push(['trackPageView']);
+    },
+    track_event: function($this) {
+      var action, category;
+      category = $this.data('track-event-category');
+      action = $this.data('track-event-action');
+      return _paq.push(['trackEvent', category, action]);
+    },
+    initialize: function() {
+      if (App.Tracks.tracking_enabled()) {
+        $('[data-track-usertype]').each(function() {
+          var $this, usertype;
+          $this = $(this);
+          usertype = $this.data('track-usertype');
+          return App.Tracks.set_custom_var(1, "usertype", usertype, "visit");
+        });
+        $('[data-track-event-category]').each(function() {
+          var $this;
+          $this = $(this);
+          return App.Tracks.track_event($this);
+        });
+        return $('[data-track-click]').on('click', function() {
+          var $this;
+          $this = $(this);
+          return App.Tracks.track_event($this);
+        });
+      }
+    }
+  };
+
+}).call(this);
+:ET

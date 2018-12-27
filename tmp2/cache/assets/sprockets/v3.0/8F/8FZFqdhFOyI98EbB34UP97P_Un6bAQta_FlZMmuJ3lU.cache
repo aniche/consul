@@ -1,0 +1,37 @@
+I"(function() {
+  App.Forms = {
+    disableEnter: function() {
+      return $('form.js-enter-disabled').on('keyup keypress', function(event) {
+        if (event.which === 13) {
+          return e.preventDefault();
+        }
+      });
+    },
+    submitOnChange: function() {
+      return $('.js-submit-on-change').unbind('change').on('change', function() {
+        $(this).closest('form').submit();
+        return false;
+      });
+    },
+    toggleLink: function() {
+      return $('.js-toggle-link').unbind('click').on('click', function() {
+        var toggle_txt;
+        $($(this).data('toggle-selector')).toggle("down");
+        if ($(this).data('toggle-text') !== void 0) {
+          toggle_txt = $(this).text();
+          $(this).text($(this).data('toggle-text'));
+          $(this).data('toggle-text', toggle_txt);
+        }
+        return false;
+      });
+    },
+    initialize: function() {
+      App.Forms.disableEnter();
+      App.Forms.submitOnChange();
+      App.Forms.toggleLink();
+      return false;
+    }
+  };
+
+}).call(this);
+:ET

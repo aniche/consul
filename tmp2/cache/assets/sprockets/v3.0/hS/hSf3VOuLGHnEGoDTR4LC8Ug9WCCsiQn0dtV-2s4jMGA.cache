@@ -1,0 +1,47 @@
+I"¢(function() {
+  App.MarkdownEditor = {
+    refresh_preview: function(element, md) {
+      var result, textarea_content;
+      textarea_content = element.find('textarea').val();
+      result = md.render(textarea_content);
+      return element.find('#markdown-preview').html(result);
+    },
+    initialize: function() {
+      return $('.markdown-editor').each(function() {
+        var md;
+        md = window.markdownit({
+          html: true,
+          breaks: true,
+          typographer: true
+        });
+        App.MarkdownEditor.refresh_preview($(this), md);
+        $(this).on('change input paste keyup', function() {
+          App.MarkdownEditor.refresh_preview($(this), md);
+          $('.legislation-draft-versions-edit .warning').show();
+        });
+        $(this).find('textarea').on('scroll', function() {
+          return $('#markdown-preview').scrollTop($(this).scrollTop());
+        });
+        return $(this).find('.fullscreen-toggle').on('click', function() {
+          var current_html, span;
+          $('.markdown-editor').toggleClass('fullscreen');
+          $('.fullscreen-container').toggleClass('medium-8', 'medium-12');
+          span = $(this).find('span');
+          current_html = span.html();
+          if (current_html === span.data('open-text')) {
+            span.html(span.data('closed-text'));
+          } else {
+            span.html(span.data('open-text'));
+          }
+          if ($('.markdown-editor').hasClass('fullscreen')) {
+            return $('.markdown-editor textarea').height($(window).height() - 100);
+          } else {
+            return $('.markdown-editor textarea').height("10em");
+          }
+        });
+      });
+    }
+  };
+
+}).call(this);
+:ET

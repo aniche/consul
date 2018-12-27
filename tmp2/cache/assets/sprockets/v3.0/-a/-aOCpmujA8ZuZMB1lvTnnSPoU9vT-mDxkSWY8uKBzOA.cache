@@ -1,0 +1,9 @@
+I"¼(function() {
+  App.Flaggable = {
+    update: function(resource_id, button) {
+      return $("#" + resource_id + " .js-flag-actions").html(button).foundation();
+    }
+  };
+
+}).call(this);
+:ET

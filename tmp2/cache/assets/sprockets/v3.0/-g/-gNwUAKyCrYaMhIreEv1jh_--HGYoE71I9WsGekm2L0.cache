@@ -1,0 +1,23 @@
+I"÷(function() {
+  App.Sortable = {
+    initialize: function() {
+      return $(".sortable").sortable({
+        update: function(event, ui) {
+          var new_order;
+          new_order = $(this).sortable('toArray', {
+            attribute: 'data-answer-id'
+          });
+          return $.ajax({
+            url: $('.sortable').data('js-url'),
+            data: {
+              ordered_list: new_order
+            },
+            type: 'POST'
+          });
+        }
+      });
+    }
+  };
+
+}).call(this);
+:ET

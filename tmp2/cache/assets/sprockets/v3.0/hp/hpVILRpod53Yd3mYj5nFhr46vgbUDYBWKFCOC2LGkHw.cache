@@ -1,0 +1,10 @@
+I"’(function() {
+  App.Users = {
+    initialize: function() {
+      $('.initialjs-avatar').initial();
+      return false;
+    }
+  };
+
+}).call(this);
+:ET

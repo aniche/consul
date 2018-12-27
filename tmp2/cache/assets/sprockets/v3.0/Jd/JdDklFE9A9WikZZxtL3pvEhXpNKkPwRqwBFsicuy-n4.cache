@@ -1,0 +1,13 @@
+I"(function() {
+  App.EmbedVideo = {
+    initialize: function() {
+      return $('#js-embedded-video').each(function() {
+        var code;
+        code = $(this).data("video-code");
+        return $('#js-embedded-video').html(code);
+      });
+    }
+  };
+
+}).call(this);
+:ET

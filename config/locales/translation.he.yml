@@ -2,7 +2,7 @@
 # IF YOU UPDATE IT, YOUR CHANGES WILL BE LOST AT THE NEXT SYNC.
 #
 # To update this file, use this translation interface:
-# http://translation.io/kolhaam/consul-heb/he
+# https://translation.io/kolhaam/consul-heb/he
 #
 ---
 he:
@@ -2517,7 +2517,6 @@ he:
       available_locales: שפות לבחירה
       collaborative_legislation: דיון מקצועי
       debates: דיונים ציבוריים
-      external_link_membership: התפקדות
       external_link_blog: אתר קול העם
       external_link_opendata: מידע נגיש
       external_link_opendata_url: https://opendata.consul
@@ -2526,7 +2525,7 @@ he:
       locale: 'שפה:'
       logo: סמליל המערכת (לוגו)
       management: ניהול
-      moderation: הנחיה
+      moderation: פיקוח תוכן לא ראוי
       valuation: הערכה
       officing: משתמשים/ות בתפקיד רשמי בהצבעה סופית
       more_info: מידע נוסף
@@ -3126,7 +3125,7 @@ he:
           other: "%{count} השקעות"
         follows:
           one: עוקב/ת 1
-          other: "%{count} עוקבים/ות"
+          other: "%{count} עוקב/ת אחר"
       no_activity: למשתמש/ת זה/ו אין פעילות ציבורית
       no_private_messages: משתמש/ת זה/זו אינו/ה מקבל/ת פניות אישיות.
       private_activity: משתמש/ת זה/ו בחר/ה לשמור בפרטי את רשימת הפעילויות שלו/ה
@@ -3500,7 +3499,7 @@ he:
       not_in_census_info: " אזרחים/ות שאינם/ן מתפקדי קול העם, יכולים/ות להשתתף במערכת
         עם ההרשאות הבאות:"
       please_check_account_data: נא לבדוק בבקשה שהנתונים מעל מדויקים
-      title: " ניהול חשבון"
+      title: " בדיקת מצב חשבון"
       under_age: אינך בגיל המאפשר רישומך כמשתמש/ת מאומת/ת במערכת.
       verify: נא לאשר
     email_label: דואר אלקטרוני
@@ -3529,7 +3528,7 @@ he:
       print_budget_investments: הדפסת תקציבים להשקעה
       support_budget_investments: תמיכה בתקציבים להשקעה
       users: משתמשים/ות
-      edit_user_accounts: עריכת חשבונך
+      edit_user_accounts: מצב חשבון משתמש
       user_invites: הזמנות של המשתמש/ת
     permissions:
       create_proposals: יצירת הצעות
@@ -3647,7 +3646,7 @@ he:
         headers:
           debate: דיון ציבורי
           moderate: הנחה דיון ציבורי
-        hide_debates: הסתירו את הדיון
+        hide_debates: הסתרת הדיון
         ignore_flags: סמן כנצפה
         order: הזמן
         orders:
@@ -3666,7 +3665,7 @@ he:
         filter: מסנן
         filters:
           all: הכל
-          pending_flag_review: צפיות בהמתנה
+          pending_flag_review: ממתין לאישור
           with_ignored_flag: סמן כמסמך שנצפה
         headers:
           moderate: מנחה
