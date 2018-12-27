@@ -1,9 +1,0 @@
-I"€(function() {
-  App.Dropdown = {
-    initialize: function() {
-      return $(document).foundation();
-    }
-  };
-
-}).call(this);
-:ET
