@@ -62,7 +62,7 @@ Rails.application.configure do
   
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = true
-  config.action_mailer.default_url_options = { host: 'vote.kolhaam.org.il', port: 80,protocol: 'https' }
+  config.action_mailer.default_url_options = { host: 'vote.kolhaam.org.il',protocol: 'https' }
   config.action_mailer.asset_host = "vote.kolhaam.org.il/"
 
   # Deliver emails to a development mailbox at /letter_opener
